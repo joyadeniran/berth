@@ -1,0 +1,737 @@
+import Image from "next/image";
+import { Header } from "@/components/Header";
+import { Button } from "@/components/Button";
+import { Icon } from "@/components/Icon";
+import { Logo } from "@/components/Logo";
+import { Reveal } from "@/components/Reveal";
+import { CountUp } from "@/components/CountUp";
+import { HeroSwirl } from "@/components/HeroSwirl";
+import { IndustriesSwirl } from "@/components/DrawOnView";
+import { WorkCard } from "@/components/WorkCard";
+import { LinkedInIcon, XIcon, InstagramIcon, YouTubeIcon } from "@/components/SocialIcons";
+
+const container = { maxWidth: 1240, margin: "0 auto" } as const;
+const photoFilter = "grayscale(1) contrast(1.06)";
+
+const stats = [
+  { count: 20, suffix: "k+", label: "Active End Users" },
+  { count: 13, suffix: "+", label: "Products Delivered" },
+  { count: 10, suffix: "+", label: "Brand Partners" },
+  { count: 2, suffix: "", label: "Markets — & Growing" },
+];
+
+const services = [
+  {
+    n: "01",
+    title: "Paid Media & PPC",
+    body: "Google Ads, Meta, TikTok, Yango Ads, and programmatic. We run campaigns that convert — not just impressions. Every naira and rand tracked to ROI.",
+  },
+  {
+    n: "02",
+    title: "App Growth & UA",
+    body: "App installs, in-app engagement, and long-term retention — not just downloads. CPI campaigns built for real scale via Transsion & Palmstore networks.",
+  },
+  {
+    n: "03",
+    title: "Growth & Analytics",
+    body: "Attribution, funnel analysis, and A/B testing. We track every naira and rand spent to ROAS.",
+  },
+  {
+    n: "04",
+    title: "Performance Strategy",
+    body: "Market-entry playbooks, audience profiling, and campaign architecture built for the African context. No copy-paste Western playbooks.",
+  },
+];
+
+const whyBerth = [
+  { icon: "globe", title: "Africa-First Thinking", body: "Local insight. Global standards." },
+  { icon: "zap", title: "Speed + Precision", body: "Agile execution. Measurable results." },
+  { icon: "trending-up", title: "Outcomes Over Optics", body: "Real growth, not just reach." },
+  { icon: "layers", title: "Full-Funnel Expertise", body: "From awareness to loyalty." },
+] as const;
+
+const industries = [
+  { icon: "landmark", label: "Fintech & Banking" },
+  { icon: "bitcoin", label: "Crypto & Web3" },
+  { icon: "gamepad-2", label: "Gaming & Betting" },
+  { icon: "heart-pulse", label: "Health & Wellness" },
+  { icon: "shopping-bag", label: "E-Commerce" },
+  { icon: "smartphone", label: "Consumer Apps" },
+  { icon: "rocket", label: "Startups" },
+] as const;
+
+export default function Home() {
+  return (
+    <div style={{ background: "var(--berth-black)" }}>
+      <Header />
+
+      {/* Hero */}
+      <section
+        id="top"
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          background: "var(--berth-black)",
+          marginTop: -76,
+          minHeight: "min(92vh,860px)",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,380px),1fr))",
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            zIndex: 4,
+            padding: "clamp(96px,11vw,150px) clamp(20px,4vw,56px) clamp(40px,6vw,64px)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            gap: 26,
+          }}
+        >
+          <Reveal>
+            <span
+              style={{
+                font: "500 11px/1.6 var(--font-sans)",
+                letterSpacing: ".18em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,.66)",
+              }}
+            >
+              Pan-African Performance Marketing
+            </span>
+          </Reveal>
+          <Reveal delay={90}>
+            <h1
+              style={{
+                margin: 0,
+                font: "700 clamp(38px,5.4vw,68px)/1.02 var(--font-display)",
+                letterSpacing: "-.03em",
+                color: "#fff",
+                textWrap: "balance",
+              }}
+            >
+              We Drive Real <span style={{ color: "var(--berth-lime)" }}>Growth</span> For Ambitious Brands.
+            </h1>
+          </Reveal>
+          <Reveal delay={180}>
+            <p
+              style={{
+                margin: 0,
+                maxWidth: "44ch",
+                font: "400 clamp(15px,1.2vw,17px)/1.6 var(--font-sans)",
+                color: "rgba(255,255,255,.7)",
+              }}
+            >
+              Data-backed, Africa-first performance marketing across Nigeria and South Africa. We build
+              campaigns that convert, retain, and scale.
+            </p>
+          </Reveal>
+          <Reveal delay={260}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 6 }}>
+              <Button variant="accent" size="md" trailingArrow href="#work">
+                See Our Work
+              </Button>
+              <Button variant="outlineOnDark" size="md" href="#contact">
+                Start a Campaign
+              </Button>
+            </div>
+          </Reveal>
+          <Reveal delay={360}>
+            <div
+              style={{
+                display: "grid",
+                gap: 3,
+                marginTop: "clamp(24px,4vw,56px)",
+                font: "500 10.5px/1.7 var(--font-sans)",
+                letterSpacing: ".2em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,.42)",
+              }}
+            >
+              <span>People</span>
+              <span>Ideas</span>
+              <span>Platforms</span>
+              <span>Progress</span>
+            </div>
+          </Reveal>
+        </div>
+        <div style={{ position: "relative", minHeight: "min(88vh,860px)" }}>
+          <Image
+            src="/images/hero-corridor.png"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 700px) 100vw, 50vw"
+            style={{ objectFit: "cover", objectPosition: "62% 50%", filter: photoFilter }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(90deg,#0B0B0B 0%,rgba(11,11,11,.75) 18%,rgba(11,11,11,0) 52%)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              right: 0,
+              top: "42%",
+              padding: "16px clamp(20px,3vw,44px) 16px 64px",
+              display: "grid",
+              gap: 2,
+              font: "500 10.5px/1.8 var(--font-sans)",
+              letterSpacing: ".2em",
+              textTransform: "uppercase",
+              color: "#fff",
+              textAlign: "right",
+              background:
+                "linear-gradient(90deg,rgba(11,11,11,0) 0%,rgba(11,11,11,.72) 55%,rgba(11,11,11,.86) 100%)",
+            }}
+          >
+            <span>Building</span>
+            <span>What Connects</span>
+            <span>Africa</span>
+            <span>And Beyond.</span>
+          </div>
+        </div>
+        <HeroSwirl />
+      </section>
+
+      {/* Proof stats */}
+      <section style={{ background: "var(--berth-sand)", padding: "clamp(30px,4vw,46px) clamp(20px,4vw,56px)" }}>
+        <div
+          style={{
+            ...container,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))",
+            gap: "clamp(20px,3vw,40px)",
+          }}
+        >
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 70}>
+              <div
+                style={{
+                  display: "grid",
+                  gap: 8,
+                  justifyItems: "center",
+                  textAlign: "center",
+                  borderLeft: i > 0 ? "1px solid var(--border-hairline)" : "none",
+                }}
+              >
+                <CountUp
+                  target={s.count}
+                  suffix={s.suffix}
+                  style={{
+                    font: "700 clamp(30px,3.4vw,42px)/1 var(--font-display)",
+                    letterSpacing: "-.03em",
+                    color: "var(--berth-black)",
+                  }}
+                />
+                <span
+                  style={{
+                    font: "500 11px/1.4 var(--font-sans)",
+                    letterSpacing: ".1em",
+                    textTransform: "uppercase",
+                    color: "var(--text-meta)",
+                  }}
+                >
+                  {s.label}
+                </span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Services */}
+      <section
+        id="services"
+        style={{
+          background: "var(--berth-sand)",
+          borderTop: "1px solid var(--border-hairline)",
+          padding: "clamp(56px,7vw,96px) clamp(20px,4vw,56px)",
+        }}
+      >
+        <div
+          style={{
+            ...container,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,300px),1fr))",
+            gap: "clamp(28px,4vw,56px)",
+          }}
+        >
+          <Reveal style={{ display: "grid", gap: 18, alignContent: "start" }}>
+            <span
+              style={{
+                font: "500 11px/1.4 var(--font-sans)",
+                letterSpacing: ".18em",
+                textTransform: "uppercase",
+                color: "var(--text-meta)",
+              }}
+            >
+              Our Services
+            </span>
+            <h2
+              style={{
+                margin: 0,
+                font: "700 clamp(28px,3.2vw,40px)/1.08 var(--font-display)",
+                letterSpacing: "-.025em",
+                color: "var(--berth-black)",
+              }}
+            >
+              Performance Marketing That{" "}
+              <span style={{ color: "var(--berth-lime-deep)" }}>Moves the Needle</span>
+            </h2>
+          </Reveal>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,190px),1fr))",
+              gap: "34px 0",
+            }}
+          >
+            {services.map((svc, i) => (
+              <Reveal
+                key={svc.n}
+                delay={i * 80}
+                style={{
+                  padding: "0 clamp(14px,2vw,26px)",
+                  display: "grid",
+                  gap: 12,
+                  alignContent: "start",
+                  borderLeft: "1px solid var(--border-hairline)",
+                }}
+              >
+                <span style={{ font: "700 15px/1 var(--font-display)", color: "var(--berth-black)" }}>
+                  {svc.n}
+                </span>
+                <span style={{ display: "block", height: 2, width: 22, background: "var(--berth-lime)" }} />
+                <h3
+                  style={{
+                    margin: 0,
+                    font: "700 15px/1.3 var(--font-sans)",
+                    letterSpacing: "-.01em",
+                    color: "var(--berth-black)",
+                  }}
+                >
+                  {svc.title}
+                </h3>
+                <p style={{ margin: 0, font: "400 13.5px/1.55 var(--font-sans)", color: "var(--text-body)" }}>
+                  {svc.body}
+                </p>
+                <span style={{ fontSize: 16, color: "var(--berth-black)" }}>→</span>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Selected work */}
+      <section id="work" style={{ background: "var(--berth-black)", padding: "clamp(48px,6vw,80px) clamp(20px,4vw,56px)" }}>
+        <div style={{ ...container, display: "grid", gap: 28 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, alignItems: "baseline", justifyContent: "space-between" }}>
+            <span
+              style={{
+                font: "500 11px/1.4 var(--font-sans)",
+                letterSpacing: ".18em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,.6)",
+              }}
+            >
+              Selected Work
+            </span>
+            <a href="#work" className="link-white-hover-lime">
+              View All Work <span>→</span>
+            </a>
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,235px),1fr))",
+              gap: "clamp(12px,1.6vw,20px)",
+            }}
+          >
+            <WorkCard
+              mark={
+                <>
+                  BYB<span style={{ color: "var(--berth-lime)" }}>!</span>T
+                </>
+              }
+              markSize={17}
+              tagline="From awareness to active traders in record time."
+              placeholder="Bybit campaign key visual"
+              stats={[
+                { value: "12,500", label: "Target Installs" },
+                { text: "32 Days" },
+                { text: "Nigeria" },
+              ]}
+            />
+            <WorkCard
+              mark="BINANCE"
+              tagline="Driving crypto adoption through performance."
+              placeholder="Binance campaign key visual"
+              stats={[{ text: "CPI" }, { text: "25 Days" }, { text: "MaxVoy" }]}
+            />
+            <WorkCard
+              mark="Salonpas"
+              tagline="More relief. More people. Across Nigeria."
+              placeholder="Salonpas OOH / campaign visual"
+              stats={[
+                { value: "116,000", label: "Target Clicks" },
+                { text: "Pan-Nigeria" },
+                { text: "18–54" },
+              ]}
+            />
+            <WorkCard
+              mark={
+                <>
+                  HONEY &<br />BANANA
+                </>
+              }
+              markSize={15}
+              tagline="A beauty brand built on confidence and culture."
+              image={{ src: "/images/work-honey-banana.png", alt: "Honey & Banana campaign visual" }}
+              stats={[{ text: "CPC" }, { text: "28 Days" }, { text: "Nigeria" }]}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* North star */}
+      <section style={{ position: "relative", overflow: "hidden", minHeight: "clamp(240px,32vw,380px)", display: "grid" }}>
+        <Image
+          src="/images/north-star.png"
+          alt=""
+          fill
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            alignSelf: "center",
+            padding: "clamp(40px,6vw,72px) clamp(20px,4vw,56px)",
+            maxWidth: 1240,
+            margin: "0 auto",
+            width: "100%",
+            boxSizing: "border-box",
+          }}
+        >
+          <Reveal>
+            <p
+              style={{
+                margin: 0,
+                maxWidth: "20ch",
+                font: "400 clamp(30px,4vw,52px)/1.1 var(--font-serif-display)",
+                color: "#fff",
+              }}
+            >
+              A more connected tomorrow.
+            </p>
+          </Reveal>
+          <Reveal delay={200}>
+            <span
+              style={{
+                display: "inline-block",
+                marginTop: 20,
+                font: "500 11px/1.4 var(--font-sans)",
+                letterSpacing: ".2em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,.65)",
+              }}
+            >
+              Ideas in motion. Impact in market.
+            </span>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Why Berth */}
+      <section id="why" style={{ background: "var(--berth-sand)", padding: "clamp(56px,7vw,96px) clamp(20px,4vw,56px)" }}>
+        <div
+          style={{
+            ...container,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))",
+            gap: "clamp(28px,3.4vw,48px)",
+            alignItems: "start",
+          }}
+        >
+          <Reveal style={{ display: "grid", gap: 18 }}>
+            <span
+              style={{
+                font: "500 11px/1.4 var(--font-sans)",
+                letterSpacing: ".18em",
+                textTransform: "uppercase",
+                color: "var(--text-meta)",
+              }}
+            >
+              Why Berth
+            </span>
+            <h2
+              style={{
+                margin: 0,
+                font: "700 clamp(26px,3vw,38px)/1.1 var(--font-display)",
+                letterSpacing: "-.025em",
+                color: "var(--berth-black)",
+              }}
+            >
+              We Don&apos;t Apply Western Playbooks{" "}
+              <span style={{ color: "var(--berth-lime-deep)" }}>To African Markets</span>
+            </h2>
+          </Reveal>
+          <Reveal
+            delay={80}
+            style={{ font: "400 15px/1.65 var(--font-sans)", color: "var(--text-body)", maxWidth: "40ch" }}
+          >
+            We combine deep local intelligence, real cultural context, and performance expertise to build
+            campaigns that resonate, convert, and create lasting value. Born in Lagos, scaling across the
+            continent.
+          </Reveal>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,200px),1fr))",
+              gap: 0,
+              borderLeft: "1px solid var(--border-hairline)",
+            }}
+          >
+            {whyBerth.map((item, i) => (
+              <Reveal
+                key={item.title}
+                delay={120 + i * 60}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto minmax(0,1fr)",
+                  gap: 14,
+                  padding: i < 2 ? "0 18px 22px" : "22px 18px 0",
+                  alignItems: "start",
+                  borderLeft: i % 2 === 1 ? "1px solid var(--border-hairline)" : "none",
+                  borderTop: i >= 2 ? "1px solid var(--border-hairline)" : "none",
+                }}
+              >
+                <Icon name={item.icon} size={26} />
+                <div style={{ display: "grid", gap: 6 }}>
+                  <h3 style={{ margin: 0, font: "700 14px/1.25 var(--font-sans)", color: "var(--berth-black)" }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ margin: 0, font: "400 13px/1.5 var(--font-sans)", color: "var(--text-body)" }}>
+                    {item.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries */}
+      <section
+        id="industries"
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          background: "var(--berth-black)",
+          padding: "clamp(48px,6vw,76px) clamp(20px,4vw,56px)",
+        }}
+      >
+        <IndustriesSwirl />
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            ...container,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,260px),1fr))",
+            gap: "clamp(24px,3vw,44px)",
+            alignItems: "center",
+          }}
+        >
+          <Reveal style={{ display: "grid", gap: 14 }}>
+            <span
+              style={{
+                font: "500 11px/1.4 var(--font-sans)",
+                letterSpacing: ".18em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,.6)",
+              }}
+            >
+              Industries
+            </span>
+            <h2
+              style={{
+                margin: 0,
+                font: "700 clamp(26px,3vw,38px)/1.08 var(--font-display)",
+                letterSpacing: "-.025em",
+                color: "#fff",
+              }}
+            >
+              Industries <span style={{ color: "var(--berth-lime)" }}>We Dominate</span>
+            </h2>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(96px,1fr))" }}>
+            {industries.map((ind, i) => (
+              <Reveal
+                key={ind.label}
+                delay={60 + i * 60}
+                style={{
+                  display: "grid",
+                  gap: 10,
+                  justifyItems: "center",
+                  textAlign: "center",
+                  padding: "6px 8px",
+                  borderLeft: "1px solid var(--border-on-dark)",
+                }}
+              >
+                <Icon name={ind.icon} size={24} invert />
+                <span style={{ font: "500 11.5px/1.35 var(--font-sans)", color: "rgba(255,255,255,.85)" }}>
+                  {ind.label}
+                </span>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section
+        id="contact"
+        style={{
+          background: "var(--berth-sand)",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))",
+        }}
+      >
+        <div
+          style={{
+            padding: "clamp(48px,6vw,80px) clamp(20px,4vw,56px)",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))",
+            gap: "clamp(24px,3vw,40px)",
+            alignItems: "center",
+          }}
+        >
+          <Reveal>
+            <h2
+              style={{
+                margin: 0,
+                font: "700 clamp(28px,3.2vw,42px)/1.08 var(--font-display)",
+                letterSpacing: "-.025em",
+                color: "var(--berth-black)",
+              }}
+            >
+              Let&apos;s Build <span style={{ color: "var(--berth-lime-deep)" }}>Your Growth Story</span>
+            </h2>
+          </Reveal>
+          <Reveal
+            delay={100}
+            style={{
+              display: "grid",
+              gap: 20,
+              justifyItems: "start",
+              paddingLeft: "clamp(0px,2vw,28px)",
+              borderLeft: "1px solid var(--border-hairline)",
+            }}
+          >
+            <p style={{ margin: 0, font: "400 15px/1.6 var(--font-sans)", color: "var(--text-body)", maxWidth: "34ch" }}>
+              We partner with brands serious about growth. If that&apos;s you — let&apos;s talk.
+            </p>
+            <Button variant="accent" size="md" trailingArrow href="#contact">
+              Start a Campaign
+            </Button>
+          </Reveal>
+        </div>
+        <div style={{ position: "relative", minHeight: "clamp(220px,26vw,340px)", overflow: "hidden" }}>
+          <Image
+            src="/images/contact-portrait.png"
+            alt=""
+            fill
+            sizes="(max-width: 700px) 100vw, 50vw"
+            style={{ objectFit: "cover", filter: photoFilter }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(180deg,rgba(11,11,11,.72) 0%,rgba(11,11,11,.3) 46%,rgba(11,11,11,.5) 100%)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              right: 0,
+              top: 0,
+              padding: "clamp(18px,2.4vw,32px) clamp(18px,2.4vw,32px) clamp(20px,2.6vw,34px) 72px",
+              display: "grid",
+              gap: 2,
+              textAlign: "right",
+              font: "500 10.5px/1.8 var(--font-sans)",
+              letterSpacing: ".2em",
+              textTransform: "uppercase",
+              color: "#fff",
+              background: "linear-gradient(200deg,rgba(11,11,11,.82) 0%,rgba(11,11,11,.6) 55%,rgba(11,11,11,0) 100%)",
+            }}
+          >
+            <span>A More</span>
+            <span>Connected</span>
+            <span>Tomorrow.</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ background: "var(--berth-black)", padding: "clamp(28px,3.4vw,40px) clamp(20px,4vw,56px)" }}>
+        <div
+          style={{
+            ...container,
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: "clamp(18px,3vw,40px)",
+            justifyContent: "space-between",
+          }}
+        >
+          <Logo mark="wordmark" ink="dark" height={26} />
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              gap: "clamp(12px,2vw,22px)",
+              font: "400 13px/1.4 var(--font-sans)",
+              color: "rgba(255,255,255,.72)",
+            }}
+          >
+            <a href="mailto:holla@berthtech.com" className="link-on-dark">
+              holla@berthtech.com
+            </a>
+            <span style={{ color: "rgba(255,255,255,.28)" }}>|</span>
+            <span>+234 803 386 5501</span>
+            <span style={{ color: "rgba(255,255,255,.28)" }}>|</span>
+            <span>Ikeja, Lagos · South Africa</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <a href="#" aria-label="LinkedIn" className="social-icon">
+              <LinkedInIcon size={18} />
+            </a>
+            <a href="#" aria-label="X" className="social-icon">
+              <XIcon size={18} />
+            </a>
+            <a href="#" aria-label="Instagram" className="social-icon">
+              <InstagramIcon size={18} />
+            </a>
+            <a href="#" aria-label="YouTube" className="social-icon">
+              <YouTubeIcon size={18} />
+            </a>
+          </div>
+          <span style={{ font: "400 13px/1.4 var(--font-sans)", color: "rgba(255,255,255,.55)" }}>
+            Ideas in motion.
+          </span>
+        </div>
+      </footer>
+    </div>
+  );
+}
