@@ -121,7 +121,9 @@ export default function Home() {
                 textWrap: "balance",
               }}
             >
-              We Drive Real <RotatingWord style={{ color: "var(--berth-lime)" }} /> For Ambitious Brands.
+              We Drive Real <RotatingWord style={{ color: "var(--berth-lime)" }} />
+              <br />
+              For Ambitious Brands.
             </h1>
           </Reveal>
           <Reveal delay={180}>
