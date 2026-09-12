@@ -8,7 +8,16 @@ import { CountUp } from "@/components/CountUp";
 import { HeroSwirl } from "@/components/HeroSwirl";
 import { IndustriesSwirl } from "@/components/DrawOnView";
 import { WorkCard } from "@/components/WorkCard";
+import { RotatingWord } from "@/components/RotatingWord";
+import { CampaignModalProvider, StartCampaignButton } from "@/components/CampaignModal";
 import { LinkedInIcon, XIcon, InstagramIcon, YouTubeIcon } from "@/components/SocialIcons";
+
+const SOCIALS = {
+  linkedin: "https://www.linkedin.com/company/berthtech",
+  x: "https://x.com/berthtech",
+  instagram: "https://instagram.com/berthtech",
+  youtube: "https://youtube.com/@berthtech",
+};
 
 const container = { maxWidth: 1240, margin: "0 auto" } as const;
 const photoFilter = "grayscale(1) contrast(1.06)";
@@ -62,6 +71,7 @@ const industries = [
 
 export default function Home() {
   return (
+    <CampaignModalProvider>
     <div style={{ background: "var(--berth-black)" }}>
       <Header />
 
@@ -111,7 +121,7 @@ export default function Home() {
                 textWrap: "balance",
               }}
             >
-              We Drive Real <span style={{ color: "var(--berth-lime)" }}>Growth</span> For Ambitious Brands.
+              We Drive Real <RotatingWord style={{ color: "var(--berth-lime)" }} /> For Ambitious Brands.
             </h1>
           </Reveal>
           <Reveal delay={180}>
@@ -132,9 +142,7 @@ export default function Home() {
               <Button variant="accent" size="md" trailingArrow href="#work">
                 See Our Work
               </Button>
-              <Button variant="outlineOnDark" size="md" href="#contact">
-                Start a Campaign
-              </Button>
+              <StartCampaignButton variant="outlineOnDark" size="md" trailingArrow={false} />
             </div>
           </Reveal>
           <Reveal delay={360}>
@@ -639,9 +647,7 @@ export default function Home() {
             <p style={{ margin: 0, font: "400 15px/1.6 var(--font-sans)", color: "var(--text-body)", maxWidth: "34ch" }}>
               We partner with brands serious about growth. If that&apos;s you — let&apos;s talk.
             </p>
-            <Button variant="accent" size="md" trailingArrow href="#contact">
-              Start a Campaign
-            </Button>
+            <StartCampaignButton size="md" />
           </Reveal>
         </div>
         <div style={{ position: "relative", minHeight: "clamp(220px,26vw,340px)", overflow: "hidden" }}>
@@ -714,16 +720,16 @@ export default function Home() {
             <span>Ikeja, Lagos · South Africa</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <a href="#" aria-label="LinkedIn" className="social-icon">
+            <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
               <LinkedInIcon size={18} />
             </a>
-            <a href="#" aria-label="X" className="social-icon">
+            <a href={SOCIALS.x} target="_blank" rel="noopener noreferrer" aria-label="X" className="social-icon">
               <XIcon size={18} />
             </a>
-            <a href="#" aria-label="Instagram" className="social-icon">
+            <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon">
               <InstagramIcon size={18} />
             </a>
-            <a href="#" aria-label="YouTube" className="social-icon">
+            <a href={SOCIALS.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="social-icon">
               <YouTubeIcon size={18} />
             </a>
           </div>
@@ -733,5 +739,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </CampaignModalProvider>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { Button } from "./Button";
+import { StartCampaignButton } from "./CampaignModal";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,9 +43,7 @@ export function Header() {
         <a href="#industries" className="nav-link">Industries</a>
         <a href="#contact" className="nav-link">Contact</a>
       </nav>
-      <Button variant="accent" size="sm" trailingArrow href="#contact">
-        Start a Campaign
-      </Button>
+      <StartCampaignButton size="sm" />
     </header>
   );
 }
