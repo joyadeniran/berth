@@ -1,6 +1,6 @@
 # Berth Tech Agency — Website
 
-Pan-African performance marketing agency one-pager. Next.js (App Router, TypeScript), built from a Claude Design handoff bundle to match the Berth brand system (`_ds/berth-design-system`): black-and-paper contrast, signal lime, the Berth curve, Satoshi + DM Serif Display.
+Pan-African performance marketing agency one-pager. Next.js (App Router, TypeScript), built from a Claude Design handoff bundle to match the Berth brand system (`_ds/berth-design-system`): black-and-paper contrast, signal lime, the Berth curve, Satoshi throughout.
 
 ## Development
 
@@ -20,7 +20,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - `public/assets` — Berth logo SVGs
 - `public/images` — supplied campaign/brand photography
 
-Three of the four "Selected Work" cards (Bybit, Binance, Salonpas) use brand-colour tiles with their headline result from the pitch deck until real campaign visuals are supplied. To swap one in, drop the image in `public/images/` and replace the card's `tile` prop with `image={{ src, alt }}` in `app/page.tsx`.
+The four "Selected Work" cards use brand-colour tiles with each campaign's headline result until real campaign visuals are supplied. To swap one in, drop the image in `public/images/` and replace the card's `tile` prop with `image={{ src, alt }}` in `app/page.tsx`. "View All Work" opens a logo wall of further brands (`moreBrands` in `app/page.tsx`, logos in `public/images/logos/`).
 
 ## "Start a Campaign"
 

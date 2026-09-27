@@ -38,6 +38,12 @@ const platforms = [
   "Johannesburg",
 ];
 
+const moreBrands = [
+  { name: "22Bet", src: "/images/logos/22bet.png", w: 801, h: 350, height: 46 },
+  { name: "MSport", src: "/images/logos/msport.png", w: 745, h: 169, height: 30 },
+  { name: "Prestmit", src: "/images/logos/prestmit.png", w: 812, h: 197, height: 30 },
+];
+
 const stats = [
   { count: 20, suffix: "k+", label: "Active End Users" },
   { count: 13, suffix: "+", label: "Products Delivered" },
@@ -166,13 +172,19 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={360}>
-            <div className="award-badge">
+            <a
+              className="award-badge"
+              href="https://www.linkedin.com/feed/update/urn:li:activity:739734659543795302"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Award size={22} strokeWidth={1.5} color="var(--berth-lime)" aria-hidden />
               <span style={{ display: "grid", gap: 3 }}>
-                <span className="award-badge-title">Rising Star Agency</span>
-                <span className="award-badge-sub">Recognised by Yango Ads</span>
+                <span className="award-badge-title">Rising Star Agency 2025</span>
+                <span className="award-badge-sub">Yango Ads Awards</span>
               </span>
-            </div>
+              <span className="award-badge-arrow" aria-hidden>↗</span>
+            </a>
           </Reveal>
         </div>
         <div style={{ position: "relative", minHeight: "min(88vh,860px)" }}>
@@ -372,9 +384,6 @@ export default function Home() {
                 Selected <Highlight>campaigns.</Highlight>
               </h2>
             </div>
-            <a href="#work" className="link-white-hover-lime">
-              View All Work <span>→</span>
-            </a>
           </div>
           <div
             style={{
@@ -384,48 +393,68 @@ export default function Home() {
             }}
           >
             <WorkCard
-              mark={
-                <>
-                  BYB<span style={{ color: "var(--berth-lime)" }}>!</span>T
-                </>
-              }
-              markSize={17}
+              mark={<Image src="/images/logos/bybit-white.png" alt="Bybit" width={600} height={206} style={{ height: 24, width: "auto" }} />}
               tagline="From awareness to active traders in record time."
-              tile={{ bg: "#17181e", accent: "#f7a600", figure: "12,500", label: "Target installs" }}
+              tile={{ bg: "#17181e", accent: "#f7a600", figure: "12,500", label: "App installs" }}
               stats={[
-                { value: "12,500", label: "Target Installs" },
+                { value: "12,500", label: "Installs" },
                 { text: "32 Days" },
                 { text: "Nigeria" },
               ]}
             />
             <WorkCard
-              mark="BINANCE"
+              mark={<Image src="/images/logos/binance.png" alt="Binance" width={800} height={160} style={{ height: 20, width: "auto" }} />}
               tagline="Driving crypto adoption through performance."
-              tile={{ bg: "#0b0e11", accent: "#f0b90b", figure: "CPI", label: "Acquisition" }}
-              stats={[{ text: "CPI" }, { text: "25 Days" }, { text: "MaxVoy" }]}
+              tile={{ bg: "#0b0e11", accent: "#f0b90b", figure: "10K+", label: "App installs" }}
+              stats={[{ value: "10K+", label: "Installs" }, { text: "25 Days" }, { text: "MaxVoy" }]}
             />
             <WorkCard
-              mark="Salonpas"
+              mark={<Image src="/images/logos/salonpas-white.png" alt="Salonpas" width={640} height={161} style={{ height: 24, width: "auto" }} />}
               tagline="More relief. More people. Across Nigeria."
-              tile={{ bg: "#0a3d8f", accent: "#ffffff", figure: "116,000", label: "Target clicks" }}
+              tile={{ bg: "#0a3d8f", accent: "#ffffff", figure: "116,000", label: "Ad clicks" }}
               stats={[
-                { value: "116,000", label: "Target Clicks" },
+                { value: "116,000", label: "Clicks" },
                 { text: "Pan-Nigeria" },
                 { text: "18–54" },
               ]}
             />
             <WorkCard
               mark={
-                <>
-                  HONEY &<br />BANANA
-                </>
+                <span className="logo-chip">
+                  <Image src="/images/logos/honey-banana-connect.png" alt="Honey & Banana Connect" width={154} height={160} style={{ height: 76, width: "auto" }} />
+                </span>
               }
-              markSize={15}
-              tagline="A beauty brand built on confidence and culture."
-              image={{ src: "/images/work-honey-banana.png", alt: "Honey & Banana campaign visual" }}
-              stats={[{ text: "CPC" }, { text: "28 Days" }, { text: "Nigeria" }]}
+              tagline="Turning ad clicks into real conversations."
+              tile={{ bg: "#2a1a05", accent: "#ffc53d", figure: "Call", label: "Click-to-call" }}
+              stats={[{ text: "Click-to-Call" }, { text: "28 Days" }, { text: "Pan-Nigeria" }]}
             />
           </div>
+          <details className="more-work">
+            <summary className="link-white-hover-lime">
+              <span className="more-work-open">View All Work</span>
+              <span className="more-work-close">Show Less</span>
+              <span className="more-work-arrow" aria-hidden>→</span>
+            </summary>
+            <div className="more-work-panel">
+              <span
+                style={{
+                  font: "500 11px/1.4 var(--font-sans)",
+                  letterSpacing: ".18em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,.6)",
+                }}
+              >
+                More brands we&apos;ve grown
+              </span>
+              <div className="logo-wall">
+                {moreBrands.map((b) => (
+                  <div key={b.name} className="logo-wall-tile">
+                    <Image src={b.src} alt={b.name} width={b.w} height={b.h} style={{ width: "auto", height: b.height }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -455,7 +484,8 @@ export default function Home() {
               style={{
                 margin: 0,
                 maxWidth: "20ch",
-                font: "400 clamp(30px,4vw,52px)/1.1 var(--font-serif-display)",
+                font: "700 clamp(30px,4vw,52px)/1.05 var(--font-display)",
+                letterSpacing: "-.03em",
                 color: "#fff",
               }}
             >
@@ -685,26 +715,6 @@ export default function Home() {
               background: "linear-gradient(180deg,rgba(11,11,11,.72) 0%,rgba(11,11,11,.3) 46%,rgba(11,11,11,.5) 100%)",
             }}
           />
-          <div
-            style={{
-              position: "absolute",
-              right: 0,
-              top: 0,
-              padding: "clamp(18px,2.4vw,32px) clamp(18px,2.4vw,32px) clamp(20px,2.6vw,34px) 72px",
-              display: "grid",
-              gap: 2,
-              textAlign: "right",
-              font: "500 10.5px/1.8 var(--font-sans)",
-              letterSpacing: ".2em",
-              textTransform: "uppercase",
-              color: "#fff",
-              background: "linear-gradient(200deg,rgba(11,11,11,.82) 0%,rgba(11,11,11,.6) 55%,rgba(11,11,11,0) 100%)",
-            }}
-          >
-            <span>A More</span>
-            <span>Connected</span>
-            <span>Tomorrow.</span>
-          </div>
         </div>
       </section>
 
@@ -735,7 +745,9 @@ export default function Home() {
               {CONTACT_EMAIL}
             </a>
             <span style={{ color: "rgba(255,255,255,.28)" }}>|</span>
-            <span>+234 803 386 5501</span>
+            <a href="tel:+2348165807581" className="link-on-dark">
+              +234 816 580 7581
+            </a>
             <span style={{ color: "rgba(255,255,255,.28)" }}>|</span>
             <span>Ikeja, Lagos · South Africa</span>
           </div>

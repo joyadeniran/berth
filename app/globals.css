@@ -62,7 +62,6 @@
   /* Type */
   --font-sans: "Satoshi", "Inter", "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-display: var(--font-sans);
-  --font-serif-display: var(--font-serif-google), "DM Serif Display", "Times New Roman", serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --fs-display-xl: 72px;
@@ -687,4 +686,79 @@ a:hover {
     animation: none;
     display: none;
   }
+}
+
+/* Work — "View All Work" logo wall */
+.more-work summary {
+  list-style: none;
+  cursor: pointer;
+  justify-self: start;
+  width: max-content;
+  font: 500 14px/1.4 var(--font-sans);
+}
+.more-work summary::-webkit-details-marker {
+  display: none;
+}
+.more-work-arrow {
+  display: inline-block;
+  transition: transform var(--dur-base) var(--ease-snap);
+}
+.more-work[open] .more-work-arrow {
+  transform: rotate(90deg);
+}
+.more-work-close,
+.more-work[open] .more-work-open {
+  display: none;
+}
+.more-work[open] .more-work-close {
+  display: inline;
+}
+.more-work-panel {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+  animation: berth-rise 0.5s var(--ease-snap) both;
+}
+.logo-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+.logo-wall-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  padding: 20px;
+  background: var(--berth-white);
+  border: 1px solid var(--border-on-dark);
+  transition: transform var(--dur-base) var(--ease-snap);
+}
+.logo-wall-tile:hover {
+  transform: translateY(-3px);
+}
+.logo-wall-tile img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Work — logo marks */
+.logo-chip {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  background: var(--berth-white);
+}
+.award-badge {
+  text-decoration: none;
+  transition: border-color var(--dur-base) var(--ease-snap);
+}
+.award-badge:hover {
+  border-color: var(--berth-lime);
+  color: var(--berth-lime);
+}
+.award-badge-arrow {
+  margin-left: 4px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
 }
