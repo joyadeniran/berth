@@ -172,13 +172,19 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={360}>
-            <div className="award-badge">
+            <a
+              className="award-badge"
+              href="https://www.linkedin.com/feed/update/urn:li:activity:739734659543795302"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Award size={22} strokeWidth={1.5} color="var(--berth-lime)" aria-hidden />
               <span style={{ display: "grid", gap: 3 }}>
-                <span className="award-badge-title">Rising Star Agency</span>
-                <span className="award-badge-sub">Recognised by Yango Ads</span>
+                <span className="award-badge-title">Rising Star Agency 2025</span>
+                <span className="award-badge-sub">Yango Ads Awards</span>
               </span>
-            </div>
+              <span className="award-badge-arrow" aria-hidden>↗</span>
+            </a>
           </Reveal>
         </div>
         <div style={{ position: "relative", minHeight: "min(88vh,860px)" }}>
@@ -387,7 +393,11 @@ export default function Home() {
             }}
           >
             <WorkCard
-              mark={<Image src="/images/logos/bybit-white.png" alt="Bybit" width={147} height={105} style={{ height: 26, width: "auto" }} />}
+              mark={
+                <span className="bybit-mark" aria-label="Bybit">
+                  BYB<span className="bybit-mark-bar" aria-hidden />T
+                </span>
+              }
               tagline="From awareness to active traders in record time."
               tile={{ bg: "#17181e", accent: "#f7a600", figure: "12,500", label: "App installs" }}
               stats={[
@@ -397,13 +407,13 @@ export default function Home() {
               ]}
             />
             <WorkCard
-              mark="BINANCE"
+              mark={<Image src="/images/logos/binance.png" alt="Binance" width={800} height={160} style={{ height: 20, width: "auto" }} />}
               tagline="Driving crypto adoption through performance."
-              tile={{ bg: "#0b0e11", accent: "#f0b90b", figure: "CPI", label: "User acquisition" }}
-              stats={[{ text: "CPI" }, { text: "25 Days" }, { text: "MaxVoy" }]}
+              tile={{ bg: "#0b0e11", accent: "#f0b90b", figure: "10K+", label: "App installs" }}
+              stats={[{ value: "10K+", label: "Installs" }, { text: "25 Days" }, { text: "MaxVoy" }]}
             />
             <WorkCard
-              mark="Salonpas"
+              mark={<Image src="/images/logos/salonpas-white.png" alt="Salonpas" width={640} height={161} style={{ height: 24, width: "auto" }} />}
               tagline="More relief. More people. Across Nigeria."
               tile={{ bg: "#0a3d8f", accent: "#ffffff", figure: "116,000", label: "Ad clicks" }}
               stats={[
@@ -414,11 +424,10 @@ export default function Home() {
             />
             <WorkCard
               mark={
-                <>
-                  HONEY &<br />BANANA
-                </>
+                <span className="logo-chip">
+                  <Image src="/images/logos/honey-banana-connect.png" alt="Honey & Banana Connect" width={154} height={160} style={{ height: 76, width: "auto" }} />
+                </span>
               }
-              markSize={15}
               tagline="Turning ad clicks into real conversations."
               tile={{ bg: "#2a1a05", accent: "#ffc53d", figure: "Call", label: "Click-to-call" }}
               stats={[{ text: "Click-to-Call" }, { text: "28 Days" }, { text: "Pan-Nigeria" }]}

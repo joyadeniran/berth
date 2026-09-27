@@ -741,3 +741,40 @@ a:hover {
   max-width: 100%;
   object-fit: contain;
 }
+
+/* Work — logo marks */
+.bybit-mark {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.06em;
+  font: 900 22px/0.8 var(--font-sans);
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+.bybit-mark-bar {
+  display: inline-block;
+  width: 0.2em;
+  height: 1.05em;
+  margin: 0 0.06em;
+  background: #f7a600;
+  transform: translateY(-0.06em);
+}
+.logo-chip {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  background: var(--berth-white);
+}
+.award-badge {
+  text-decoration: none;
+  transition: border-color var(--dur-base) var(--ease-snap);
+}
+.award-badge:hover {
+  border-color: var(--berth-lime);
+  color: var(--berth-lime);
+}
+.award-badge-arrow {
+  margin-left: 4px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+}
