@@ -425,8 +425,8 @@ export default function Home() {
                 </span>
               }
               tagline="Turning ad clicks into real conversations."
-              tile={{ bg: "#2a1a05", accent: "#ffc53d", figure: "Call", label: "Click-to-call" }}
-              stats={[{ text: "Click-to-Call" }, { text: "28 Days" }, { text: "Pan-Nigeria" }]}
+              tile={{ bg: "#2a1a05", accent: "#ffc53d", figure: "3K", label: "Calls" }}
+              stats={[{ value: "3K", label: "Calls" }, { text: "28 Days" }, { text: "Pan-Nigeria" }]}
             />
           </div>
           <details className="more-work">
