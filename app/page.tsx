@@ -393,11 +393,7 @@ export default function Home() {
             }}
           >
             <WorkCard
-              mark={
-                <span className="bybit-mark" aria-label="Bybit">
-                  BYB<span className="bybit-mark-bar" aria-hidden />T
-                </span>
-              }
+              mark={<Image src="/images/logos/bybit-white.png" alt="Bybit" width={600} height={206} style={{ height: 24, width: "auto" }} />}
               tagline="From awareness to active traders in record time."
               tile={{ bg: "#17181e", accent: "#f7a600", figure: "12,500", label: "App installs" }}
               stats={[

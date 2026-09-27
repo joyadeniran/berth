@@ -743,22 +743,6 @@ a:hover {
 }
 
 /* Work — logo marks */
-.bybit-mark {
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 0.06em;
-  font: 900 22px/0.8 var(--font-sans);
-  letter-spacing: 0.02em;
-  color: #fff;
-}
-.bybit-mark-bar {
-  display: inline-block;
-  width: 0.2em;
-  height: 1.05em;
-  margin: 0 0.06em;
-  background: #f7a600;
-  transform: translateY(-0.06em);
-}
 .logo-chip {
   display: inline-flex;
   padding: 4px;
