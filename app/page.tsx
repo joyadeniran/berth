@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Award } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Button } from "@/components/Button";
 import { Icon } from "@/components/Icon";
@@ -164,6 +165,15 @@ export default function Home() {
               <StartCampaignButton variant="outlineOnDark" size="md" trailingArrow={false} />
             </div>
           </Reveal>
+          <Reveal delay={360}>
+            <div className="award-badge">
+              <Award size={22} strokeWidth={1.5} color="var(--berth-lime)" aria-hidden />
+              <span style={{ display: "grid", gap: 3 }}>
+                <span className="award-badge-title">Rising Star Agency</span>
+                <span className="award-badge-sub">Recognised by Yango Ads</span>
+              </span>
+            </div>
+          </Reveal>
         </div>
         <div style={{ position: "relative", minHeight: "min(88vh,860px)" }}>
           <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
@@ -267,8 +277,7 @@ export default function Home() {
           style={{
             ...container,
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,300px),1fr))",
-            gap: "clamp(28px,4vw,56px)",
+            gap: "clamp(28px,4vw,48px)",
           }}
         >
           <Reveal style={{ display: "grid", gap: 18, alignContent: "start" }}>
@@ -297,7 +306,7 @@ export default function Home() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,190px),1fr))",
+              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,220px),1fr))",
               gap: "34px 0",
             }}
           >
@@ -566,9 +575,7 @@ export default function Home() {
             zIndex: 2,
             ...container,
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,260px),1fr))",
-            gap: "clamp(24px,3vw,44px)",
-            alignItems: "center",
+            gap: "clamp(28px,4vw,48px)",
           }}
         >
           <Reveal style={{ display: "grid", gap: 14 }}>

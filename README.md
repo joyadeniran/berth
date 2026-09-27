@@ -28,7 +28,7 @@ Every "Start a Campaign" button opens a lead-capture modal (name, email, company
 
 **One-time setup:** the very first submission after deploy triggers an "Activate Form" email to `holla@berth.agency`. Click the link in it once, and every lead after that lands in the inbox, with Reply going straight to the lead. Until it's activated, the form tells visitors to email `holla@berth.agency` directly.
 
-To change the inbox, edit `CONTACT_EMAIL` in `lib/contact.ts` (the new address will need the same one-time activation).
+The form posts to FormSubmit's private alias for the inbox (set in `CONTACT_ENDPOINT` in `lib/contact.ts`), so the address isn't exposed in the page source. To change the inbox, point `CONTACT_ENDPOINT` at the new address, activate it, then swap in the alias FormSubmit emails you, and update `CONTACT_EMAIL`.
 
 ## Deploy
 
