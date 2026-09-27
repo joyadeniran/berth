@@ -110,7 +110,13 @@ export function CampaignModalProvider({ children }: { children: ReactNode }) {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok || String(body.success) !== "true") {
-        setError(`Something went wrong sending your request. Email ${CONTACT_EMAIL} directly instead.`);
+        const reason = String(body.message || `HTTP ${res.status}`);
+        console.warn("FormSubmit rejected the campaign request:", reason, body);
+        setError(
+          /activat/i.test(reason)
+            ? `This form isn't activated yet. FormSubmit has emailed ${CONTACT_EMAIL} an "Activate Form" link (check spam too) — click it, then send again.`
+            : `Something went wrong sending your request (${reason}). Email ${CONTACT_EMAIL} directly instead.`,
+        );
         setStatus("error");
         return;
       }
