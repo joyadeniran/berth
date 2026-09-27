@@ -10,6 +10,7 @@ import { IndustriesSwirl } from "@/components/DrawOnView";
 import { WorkCard } from "@/components/WorkCard";
 import { RotatingWord } from "@/components/RotatingWord";
 import { HeroPointer } from "@/components/HeroPointer";
+import { Highlight } from "@/components/Highlight";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { CampaignModalProvider, StartCampaignButton } from "@/components/CampaignModal";
 import { LinkedInIcon, XIcon, InstagramIcon, YouTubeIcon } from "@/components/SocialIcons";
@@ -137,7 +138,7 @@ export default function Home() {
             <span className="hero-line">
               <span style={{ animationDelay: "120ms" }}>We Drive Real</span>
             </span>
-            <RotatingWord style={{ color: "var(--berth-lime)" }} />
+            <RotatingWord style={{ color: "var(--berth-black)" }} />
             <span className="hero-line">
               <span style={{ animationDelay: "260ms" }}>For Ambitious Brands.</span>
             </span>
@@ -161,24 +162,6 @@ export default function Home() {
                 See Our Work
               </Button>
               <StartCampaignButton variant="outlineOnDark" size="md" trailingArrow={false} />
-            </div>
-          </Reveal>
-          <Reveal delay={360}>
-            <div
-              style={{
-                display: "grid",
-                gap: 3,
-                marginTop: "clamp(24px,4vw,56px)",
-                font: "500 10.5px/1.7 var(--font-sans)",
-                letterSpacing: ".2em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,.42)",
-              }}
-            >
-              <span>People</span>
-              <span>Ideas</span>
-              <span>Platforms</span>
-              <span>Progress</span>
             </div>
           </Reveal>
         </div>
@@ -205,28 +188,6 @@ export default function Home() {
                 "linear-gradient(90deg,#0B0B0B 0%,rgba(11,11,11,.75) 18%,rgba(11,11,11,0) 52%)",
             }}
           />
-          <div
-            style={{
-              position: "absolute",
-              right: 0,
-              top: "42%",
-              padding: "16px clamp(20px,3vw,44px) 16px 64px",
-              display: "grid",
-              gap: 2,
-              font: "500 10.5px/1.8 var(--font-sans)",
-              letterSpacing: ".2em",
-              textTransform: "uppercase",
-              color: "#fff",
-              textAlign: "right",
-              background:
-                "linear-gradient(90deg,rgba(11,11,11,0) 0%,rgba(11,11,11,.72) 55%,rgba(11,11,11,.86) 100%)",
-            }}
-          >
-            <span>Building</span>
-            <span>What Connects</span>
-            <span>Africa</span>
-            <span>And Beyond.</span>
-          </div>
         </div>
         <div className="hero-spotlight" aria-hidden="true" />
         <div className="hero-grain" aria-hidden="true" />
@@ -330,7 +291,7 @@ export default function Home() {
               }}
             >
               Performance Marketing That{" "}
-              <span style={{ color: "var(--berth-lime-deep)" }}>Moves the Needle</span>
+              <Highlight>Moves the Needle</Highlight>
             </h2>
           </Reveal>
           <div
@@ -379,17 +340,29 @@ export default function Home() {
       {/* Selected work */}
       <section id="work" style={{ background: "var(--berth-black)", padding: "clamp(48px,6vw,80px) clamp(20px,4vw,56px)" }}>
         <div style={{ ...container, display: "grid", gap: 28 }}>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, alignItems: "baseline", justifyContent: "space-between" }}>
-            <span
-              style={{
-                font: "500 11px/1.4 var(--font-sans)",
-                letterSpacing: ".18em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,.6)",
-              }}
-            >
-              Selected Work
-            </span>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, alignItems: "flex-end", justifyContent: "space-between" }}>
+            <div style={{ display: "grid", gap: 12 }}>
+              <span
+                style={{
+                  font: "500 11px/1.4 var(--font-sans)",
+                  letterSpacing: ".18em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,.6)",
+                }}
+              >
+                Selected Work
+              </span>
+              <h2
+                style={{
+                  margin: 0,
+                  font: "700 clamp(28px,3.2vw,42px)/1.08 var(--font-display)",
+                  letterSpacing: "-.025em",
+                  color: "#fff",
+                }}
+              >
+                Selected <Highlight>campaigns.</Highlight>
+              </h2>
+            </div>
             <a href="#work" className="link-white-hover-lime">
               View All Work <span>→</span>
             </a>
@@ -409,7 +382,7 @@ export default function Home() {
               }
               markSize={17}
               tagline="From awareness to active traders in record time."
-              placeholder="Bybit campaign key visual"
+              tile={{ bg: "#17181e", accent: "#f7a600", figure: "12,500", label: "Target installs" }}
               stats={[
                 { value: "12,500", label: "Target Installs" },
                 { text: "32 Days" },
@@ -419,13 +392,13 @@ export default function Home() {
             <WorkCard
               mark="BINANCE"
               tagline="Driving crypto adoption through performance."
-              placeholder="Binance campaign key visual"
+              tile={{ bg: "#0b0e11", accent: "#f0b90b", figure: "CPI", label: "Acquisition" }}
               stats={[{ text: "CPI" }, { text: "25 Days" }, { text: "MaxVoy" }]}
             />
             <WorkCard
               mark="Salonpas"
               tagline="More relief. More people. Across Nigeria."
-              placeholder="Salonpas OOH / campaign visual"
+              tile={{ bg: "#0a3d8f", accent: "#ffffff", figure: "116,000", label: "Target clicks" }}
               stats={[
                 { value: "116,000", label: "Target Clicks" },
                 { text: "Pan-Nigeria" },
@@ -528,7 +501,7 @@ export default function Home() {
               }}
             >
               We Don&apos;t Apply Western Playbooks{" "}
-              <span style={{ color: "var(--berth-lime-deep)" }}>To African Markets</span>
+              <Highlight>To African Markets</Highlight>
             </h2>
           </Reveal>
           <Reveal
@@ -617,7 +590,7 @@ export default function Home() {
                 color: "#fff",
               }}
             >
-              Industries <span style={{ color: "var(--berth-lime)" }}>We Dominate</span>
+              Industries <Highlight>We Dominate</Highlight>
             </h2>
           </Reveal>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(96px,1fr))" }}>
@@ -671,7 +644,7 @@ export default function Home() {
                 color: "var(--berth-black)",
               }}
             >
-              Let&apos;s Build <span style={{ color: "var(--berth-lime-deep)" }}>Your Growth Story</span>
+              Let&apos;s Build <Highlight>Your Growth Story</Highlight>
             </h2>
           </Reveal>
           <Reveal

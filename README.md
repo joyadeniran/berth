@@ -16,11 +16,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - `app/page.tsx` — the one-pager: hero, proof stats, services, selected work, north-star band, why Berth, industries, contact, footer
 - `app/globals.css` — Berth design tokens (color, type, spacing, radii, shadows, motion) and keyframes
 - `lib/contact.ts` — the contact inbox (`holla@berth.agency`) and the FormSubmit endpoint the lead form posts to
-- `components/` — `Header` (scroll-blur nav), `Reveal` (scroll-triggered reveal), `CountUp` (scroll-triggered stat count-up), `HeroSwirl` / `DrawOnView` (the lime SVG swirl), `RotatingWord` (the cycling hero word), `HeroPointer` (cursor spotlight + parallax), `CampaignModal` (the "Start a Campaign" lead form), `WorkCard`, `Button`, `Logo`, `Icon`, `SocialIcons`
+- `components/` — `Header` (scroll-blur nav), `Reveal` (scroll-triggered reveal), `CountUp` (scroll-triggered stat count-up), `HeroSwirl` / `DrawOnView` (the lime SVG swirl), `RotatingWord` (the cycling hero word), `HeroPointer` (cursor spotlight + parallax), `Highlight` (the pitch deck's lime highlighter bar, sweeping in on scroll), `CampaignModal` (the "Start a Campaign" lead form), `WorkCard`, `Button`, `Logo`, `Icon`, `SocialIcons`
 - `public/assets` — Berth logo SVGs
 - `public/images` — supplied campaign/brand photography
 
-Three of the four "Selected Work" cards (Bybit, Binance, Salonpas) are still placeholder tiles — real campaign visuals haven't been supplied yet.
+Three of the four "Selected Work" cards (Bybit, Binance, Salonpas) use brand-colour tiles with their headline result from the pitch deck until real campaign visuals are supplied. To swap one in, drop the image in `public/images/` and replace the card's `tile` prop with `image={{ src, alt }}` in `app/page.tsx`.
 
 ## "Start a Campaign"
 
