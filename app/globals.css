@@ -640,3 +640,51 @@ a:hover {
   background-size: 100% 92%;
   color: var(--berth-black);
 }
+
+/* Hero — award badge */
+.award-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 12px;
+  border: 1px solid var(--border-on-dark);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--berth-lime);
+  position: relative;
+  overflow: hidden;
+}
+.award-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(198, 255, 61, 0.18) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: award-shine 5s var(--ease-in-out) 1.6s infinite;
+  pointer-events: none;
+}
+.award-badge-title {
+  font: 700 13px/1 var(--font-sans);
+  color: #fff;
+}
+.award-badge-sub {
+  font: 500 10px/1 var(--font-sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+@keyframes award-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  40%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .award-badge::after {
+    animation: none;
+    display: none;
+  }
+}
