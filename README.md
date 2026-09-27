@@ -15,25 +15,21 @@ Open [http://localhost:3000](http://localhost:3000).
 
 - `app/page.tsx` — the one-pager: hero, proof stats, services, selected work, north-star band, why Berth, industries, contact, footer
 - `app/globals.css` — Berth design tokens (color, type, spacing, radii, shadows, motion) and keyframes
-- `app/api/contact/route.ts` — handles "Start a Campaign" submissions, emails the lead via Resend
-- `components/` — `Header` (scroll-blur nav), `Reveal` (scroll-triggered reveal), `CountUp` (scroll-triggered stat count-up), `HeroSwirl` / `DrawOnView` (the lime SVG swirl), `RotatingWord` (the cycling hero word), `CampaignModal` (the "Start a Campaign" lead form), `WorkCard`, `Button`, `Logo`, `Icon`, `SocialIcons`
+- `lib/contact.ts` — the contact inbox (`holla@berth.agency`) and the FormSubmit endpoint the lead form posts to
+- `components/` — `Header` (scroll-blur nav), `Reveal` (scroll-triggered reveal), `CountUp` (scroll-triggered stat count-up), `HeroSwirl` / `DrawOnView` (the lime SVG swirl), `RotatingWord` (the cycling hero word), `HeroPointer` (cursor spotlight + parallax), `Highlight` (the pitch deck's lime highlighter bar, sweeping in on scroll), `CampaignModal` (the "Start a Campaign" lead form), `WorkCard`, `Button`, `Logo`, `Icon`, `SocialIcons`
 - `public/assets` — Berth logo SVGs
 - `public/images` — supplied campaign/brand photography
 
-Three of the four "Selected Work" cards (Bybit, Binance, Salonpas) are still placeholder tiles — real campaign visuals haven't been supplied yet.
+Three of the four "Selected Work" cards (Bybit, Binance, Salonpas) use brand-colour tiles with their headline result from the pitch deck until real campaign visuals are supplied. To swap one in, drop the image in `public/images/` and replace the card's `tile` prop with `image={{ src, alt }}` in `app/page.tsx`.
 
 ## "Start a Campaign"
 
-Every "Start a Campaign" button opens a lead-capture modal (name, email, company, budget, message) that POSTs to `/api/contact`, which emails the lead via [Resend](https://resend.com).
+Every "Start a Campaign" button opens a lead-capture modal (name, email, company, budget, message) that posts straight from the browser to [FormSubmit](https://formsubmit.co), which emails the lead to `holla@berth.agency`. No backend, API key, or env vars.
 
-To make it live, set these in the Vercel project's Environment Variables:
+**One-time setup:** the very first submission after deploy triggers an "Activate Form" email to `holla@berth.agency`. Click the link in it once, and every lead after that lands in the inbox, with Reply going straight to the lead. Until it's activated, the form tells visitors to email `holla@berth.agency` directly.
 
-| Variable | Required | Notes |
-| --- | --- | --- |
-| `RESEND_API_KEY` | Yes | From resend.com. Without it, the form fails gracefully and tells the visitor to email `holla@berthtech.com` directly instead. |
-| `CONTACT_TO_EMAIL` | No | Where leads land. Defaults to `holla@berthtech.com`. |
-| `CONTACT_FROM_EMAIL` | No | The verified send-from address, e.g. `Berth <campaigns@berthtech.com>`. Defaults to Resend's sandbox address (`onboarding@resend.dev`), which only delivers to the Resend account owner's own email — **verify a `berthtech.com` domain in Resend and set this** before relying on the form for real leads. |
+To change the inbox, edit `CONTACT_EMAIL` in `lib/contact.ts` (the new address will need the same one-time activation).
 
 ## Deploy
 
-Deployed on [Vercel](https://vercel.com), linked to this repository's `main` branch. Redeploy (or the next push) after adding the env vars above.
+Deployed on [Vercel](https://vercel.com), linked to this repository's `main` branch. No env vars required.

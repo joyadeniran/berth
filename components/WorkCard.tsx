@@ -3,19 +3,23 @@ import type { ReactNode } from "react";
 
 type WorkStat = { value: string; label: string } | { text: string };
 
+// Stand-in for campaign photography: the brand's colours with the headline
+// result from the pitch deck's proof slide.
+type WorkTile = { bg: string; accent: string; figure: string; label: string };
+
 export function WorkCard({
   mark,
   markSize = 15,
   tagline,
   image,
-  placeholder,
+  tile,
   stats,
 }: {
   mark: ReactNode;
   markSize?: number;
   tagline: string;
   image?: { src: string; alt: string };
-  placeholder?: string;
+  tile?: WorkTile;
   stats: WorkStat[];
 }) {
   return (
@@ -29,9 +33,19 @@ export function WorkCard({
             sizes="(max-width: 700px) 100vw, 25vw"
             style={{ objectFit: "cover" }}
           />
-        ) : (
-          <div className="work-card-placeholder">{placeholder}</div>
-        )}
+        ) : tile ? (
+          <div
+            className="work-card-tile"
+            style={{
+              background: `radial-gradient(120% 80% at 85% 20%, ${tile.accent}33 0%, transparent 55%), ${tile.bg}`,
+            }}
+          >
+            <span className="work-card-tile-figure" style={{ color: tile.accent }}>
+              {tile.figure}
+            </span>
+            <span className="work-card-tile-label">{tile.label}</span>
+          </div>
+        ) : null}
         <div
           style={{
             position: "absolute",

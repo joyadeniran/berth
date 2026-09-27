@@ -6,6 +6,7 @@ export function HeroSwirl() {
       viewBox="0 0 1440 820"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
+      className="hero-swirl"
       style={{
         position: "absolute",
         inset: 0,

@@ -369,20 +369,40 @@ a:hover {
 .work-card:hover .work-card-media img {
   transform: scale(1.03);
 }
-.work-card-placeholder {
+.work-card-tile {
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  padding: 16px;
-  text-align: center;
-  font: 500 12px/1.4 var(--font-sans);
-  letter-spacing: 0.08em;
+  gap: 10px;
+  padding: 0 18px;
+  background-blend-mode: normal;
+}
+.work-card-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 14px);
+  pointer-events: none;
+}
+.work-card-tile-figure {
+  position: relative;
+  font: 700 clamp(40px, 4.4vw, 58px) / 1 var(--font-display);
+  letter-spacing: -0.035em;
+  transition: transform 0.42s var(--ease-snap);
+  transform-origin: left center;
+}
+.work-card:hover .work-card-tile-figure {
+  transform: scale(1.04);
+}
+.work-card-tile-label {
+  position: relative;
+  font: 500 11px/1.4 var(--font-sans);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  border: 1px dashed rgba(255, 255, 255, 0.16);
-  margin: 10px;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Icon socials */
@@ -392,4 +412,231 @@ a:hover {
 }
 .social-icon:hover {
   color: var(--berth-lime);
+}
+
+/* Hero — rotating word */
+.rw {
+  display: block;
+}
+.rw-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+.rw-stage {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0.04em 0 0.08em;
+  transition: width 0.6s var(--ease-snap);
+}
+.rw-bar {
+  position: absolute;
+  inset: 0.02em 0 -0.06em;
+  z-index: -1;
+  background: var(--berth-lime);
+  transform-origin: left center;
+  animation: rw-bar-in 0.9s var(--ease-snap) 0.35s both;
+}
+.rw-layer {
+  display: inline-block;
+  padding: 0 0.14em;
+}
+.rw-out {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.rw-char-in,
+.rw-char-out {
+  display: inline-block;
+  animation: rw-in 0.62s var(--ease-snap) both;
+}
+.rw-char-out {
+  animation-name: rw-out;
+  animation-duration: 0.42s;
+}
+@keyframes rw-bar-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes rw-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em) rotate(6deg);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@keyframes rw-out {
+  to {
+    opacity: 0;
+    transform: translateY(-0.4em) rotate(-4deg);
+    filter: blur(8px);
+  }
+}
+/* Hero — headline lines slide up out of a mask on load */
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.hero-line > span {
+  display: block;
+  animation: hero-line-up 1s var(--ease-snap) both;
+}
+@keyframes hero-line-up {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Hero — photo depth: slow Ken Burns zoom + pointer parallax */
+.hero-photo {
+  position: absolute;
+  inset: -3%;
+  transform: translate3d(calc(var(--px, 0) * -16px), calc(var(--py, 0) * -10px), 0);
+  transition: transform 0.9s var(--ease-out);
+}
+.hero-photo-zoom {
+  position: absolute;
+  inset: 0;
+  animation: hero-kenburns 24s var(--ease-in-out) infinite alternate;
+}
+@keyframes hero-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08) translateX(-1.5%);
+  }
+}
+.hero-swirl {
+  transform: translate3d(calc(var(--px, 0) * 10px), calc(var(--py, 0) * 8px), 0);
+  transition: transform 1.1s var(--ease-out);
+}
+
+/* Hero — cursor spotlight and film grain */
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-snap);
+  background: radial-gradient(
+    520px circle at var(--mx, 70%) var(--my, 40%),
+    rgba(198, 255, 61, 0.1),
+    rgba(198, 255, 61, 0.03) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+}
+[data-pointer="on"] > .hero-spotlight {
+  opacity: 1;
+}
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Hero — platform ticker */
+.hero-ticker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  overflow: hidden;
+  border-top: 1px solid var(--border-on-dark);
+  background: rgba(11, 11, 11, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.hero-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: hero-marquee 38s linear infinite;
+}
+.hero-ticker:hover .hero-ticker-track {
+  animation-play-state: paused;
+}
+.hero-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 16px 0 16px 22px;
+  font: 500 11px/1 var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+.hero-ticker-item::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--berth-lime);
+  box-shadow: 0 0 8px rgba(198, 255, 61, 0.8);
+}
+@keyframes hero-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rw-out {
+    display: none;
+  }
+  .rw-char-in,
+  .rw-bar,
+  .hero-line > span,
+  .hero-photo-zoom,
+  .hero-ticker-track {
+    animation: none;
+  }
+  .rw-stage,
+  .hl {
+    transition: none;
+  }
+}
+
+/* Highlighter — the pitch deck's lime bar behind a key phrase */
+.hl {
+  padding: 0 0.12em;
+  margin: 0 -0.04em;
+  background: linear-gradient(var(--berth-lime), var(--berth-lime)) no-repeat 0 60% / 0% 92%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition:
+    background-size 0.95s var(--ease-snap) var(--hl-delay, 0ms),
+    color 0.35s var(--ease-snap) calc(var(--hl-delay, 0ms) + 0.2s);
+}
+.hl-on {
+  background-size: 100% 92%;
+  color: var(--berth-black);
 }
