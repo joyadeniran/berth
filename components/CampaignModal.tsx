@@ -10,6 +10,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
+import { CONTACT_EMAIL, CONTACT_ENDPOINT } from "@/lib/contact";
 
 const BUDGETS = ["Under $1k/mo", "$1k–$5k/mo", "$5k–$20k/mo", "$20k+/mo", "Not sure yet"];
 
@@ -74,7 +75,7 @@ export function CampaignModalProvider({ children }: { children: ReactNode }) {
       if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
-    dialogRef.current?.querySelector<HTMLElement>("input,textarea")?.focus();
+    dialogRef.current?.querySelector<HTMLElement>("input:not([name=_honey]),textarea")?.focus();
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
@@ -85,24 +86,31 @@ export function CampaignModalProvider({ children }: { children: ReactNode }) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const field = (key: string) => String(data.get(key) || "").trim();
+    const name = field("name");
+    const company = field("company");
     const payload = {
-      name: String(data.get("name") || "").trim(),
-      email: String(data.get("email") || "").trim(),
-      company: String(data.get("company") || "").trim(),
-      budget: String(data.get("budget") || "").trim(),
-      message: String(data.get("message") || "").trim(),
+      name,
+      email: field("email"),
+      company: company || "—",
+      budget: field("budget") || "—",
+      message: field("message"),
+      _subject: `New campaign request — ${name}${company ? ` (${company})` : ""}`,
+      _template: "table",
+      _captcha: "false",
+      _honey: field("_honey"),
     };
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
       });
       const body = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setError(body.error || "Something went wrong. Try again shortly.");
+      if (!res.ok || String(body.success) !== "true") {
+        setError(`Something went wrong sending your request. Email ${CONTACT_EMAIL} directly instead.`);
         setStatus("error");
         return;
       }
@@ -216,6 +224,14 @@ export function CampaignModalProvider({ children }: { children: ReactNode }) {
                   </p>
                 </div>
 
+                <input
+                  name="_honey"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }}
+                />
                 <Field label="Name" required>
                   <input name="name" type="text" required autoComplete="name" style={inputStyle} />
                 </Field>

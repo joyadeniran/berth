@@ -9,6 +9,8 @@ import { HeroSwirl } from "@/components/HeroSwirl";
 import { IndustriesSwirl } from "@/components/DrawOnView";
 import { WorkCard } from "@/components/WorkCard";
 import { RotatingWord } from "@/components/RotatingWord";
+import { HeroPointer } from "@/components/HeroPointer";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { CampaignModalProvider, StartCampaignButton } from "@/components/CampaignModal";
 import { LinkedInIcon, XIcon, InstagramIcon, YouTubeIcon } from "@/components/SocialIcons";
 
@@ -21,6 +23,18 @@ const SOCIALS = {
 
 const container = { maxWidth: 1240, margin: "0 auto" } as const;
 const photoFilter = "grayscale(1) contrast(1.06)";
+
+const platforms = [
+  "Google Ads",
+  "Meta",
+  "TikTok",
+  "Yango Ads",
+  "Programmatic",
+  "Transsion",
+  "Palmstore",
+  "Lagos",
+  "Johannesburg",
+];
 
 const stats = [
   { count: 20, suffix: "k+", label: "Active End Users" },
@@ -92,7 +106,7 @@ export default function Home() {
           style={{
             position: "relative",
             zIndex: 4,
-            padding: "clamp(96px,11vw,150px) clamp(20px,4vw,56px) clamp(40px,6vw,64px)",
+            padding: "clamp(96px,11vw,150px) clamp(20px,4vw,56px) calc(clamp(40px,6vw,64px) + 48px)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -111,21 +125,23 @@ export default function Home() {
               Pan-African Performance Marketing
             </span>
           </Reveal>
-          <Reveal delay={90}>
-            <h1
-              style={{
-                margin: 0,
-                font: "700 clamp(38px,5.4vw,68px)/1.02 var(--font-display)",
-                letterSpacing: "-.03em",
-                color: "#fff",
-                textWrap: "balance",
-              }}
-            >
-              We Drive Real <RotatingWord style={{ color: "var(--berth-lime)" }} />
-              <br />
-              For Ambitious Brands.
-            </h1>
-          </Reveal>
+          <h1
+            style={{
+              margin: 0,
+              font: "700 clamp(38px,5.4vw,68px)/1.02 var(--font-display)",
+              letterSpacing: "-.03em",
+              color: "#fff",
+              textWrap: "balance",
+            }}
+          >
+            <span className="hero-line">
+              <span style={{ animationDelay: "120ms" }}>We Drive Real</span>
+            </span>
+            <RotatingWord style={{ color: "var(--berth-lime)" }} />
+            <span className="hero-line">
+              <span style={{ animationDelay: "260ms" }}>For Ambitious Brands.</span>
+            </span>
+          </h1>
           <Reveal delay={180}>
             <p
               style={{
@@ -167,14 +183,20 @@ export default function Home() {
           </Reveal>
         </div>
         <div style={{ position: "relative", minHeight: "min(88vh,860px)" }}>
-          <Image
-            src="/images/hero-corridor.png"
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 700px) 100vw, 50vw"
-            style={{ objectFit: "cover", objectPosition: "62% 50%", filter: photoFilter }}
-          />
+          <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+            <div className="hero-photo">
+              <div className="hero-photo-zoom">
+                <Image
+                  src="/images/hero-corridor.png"
+                  alt=""
+                  fill
+                  priority
+                  sizes="(max-width: 700px) 100vw, 50vw"
+                  style={{ objectFit: "cover", objectPosition: "62% 50%", filter: photoFilter }}
+                />
+              </div>
+            </div>
+          </div>
           <div
             style={{
               position: "absolute",
@@ -206,7 +228,23 @@ export default function Home() {
             <span>And Beyond.</span>
           </div>
         </div>
+        <div className="hero-spotlight" aria-hidden="true" />
+        <div className="hero-grain" aria-hidden="true" />
         <HeroSwirl />
+        <div className="hero-ticker" aria-label="Platforms and markets we run on">
+          <div className="hero-ticker-track">
+            {[0, 1].map((copy) => (
+              <div key={copy} style={{ display: "flex" }} aria-hidden={copy === 1 ? true : undefined}>
+                {platforms.map((p) => (
+                  <span key={p} className="hero-ticker-item">
+                    {p}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        <HeroPointer />
       </section>
 
       {/* Proof stats */}
@@ -713,8 +751,8 @@ export default function Home() {
               color: "rgba(255,255,255,.72)",
             }}
           >
-            <a href="mailto:holla@berthtech.com" className="link-on-dark">
-              holla@berthtech.com
+            <a href={`mailto:${CONTACT_EMAIL}`} className="link-on-dark">
+              {CONTACT_EMAIL}
             </a>
             <span style={{ color: "rgba(255,255,255,.28)" }}>|</span>
             <span>+234 803 386 5501</span>
